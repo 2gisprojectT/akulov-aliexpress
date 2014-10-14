@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="http://ru.aliexpress.com/" />
+<title>111</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">111</td></tr>
+</thead><tbody>
+<tr>
+	<td>open</td>
+	<td>/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>css=li.on-click</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=search-key</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=search-key</td>
+	<td>ноутбук</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>css=input.search-button</td>
+	<td></td>
+</tr>
+<tr>
+	<td>store</td>
+	<td>true</td>
+	<td>bool</td>
+</tr>
+<tr>
+	<td>storeEval</td>
+	<td>1</td>
+	<td>count1</td>
+</tr>
+<tr>
+	<td>while</td>
+	<td>${bool} == true</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>//ul[@id='hs-list-items']/li[${count1}]/div[@class='detail']/h3/a</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=add-to-cart</td>
+	<td></td>
+</tr>
+<tr>
+	<td>pause</td>
+	<td>3000</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//div[@class='ui-window-bd']/div[@class='ui-feedback ui-feedback-simple']/div[@class='ui-feedback-content ui-feedback-success']/div[@class='ui-feedback-body']/div[@class='ui-window-btn']/button</td>
+	<td></td>
+</tr>
+<tr>
+	<td>goBack</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr>
+	<td>pause</td>
+	<td>4000</td>
+	<td></td>
+</tr>
+<tr>
+	<td>storeElementPresent</td>
+	<td>//ul[@id='hs-list-items']/li[${count1}+1]</td>
+	<td>t</td>
+</tr>
+<tr>
+	<td>storeEval</td>
+	<td>if (${t} == true) {true} else {false}</td>
+	<td>bool</td>
+</tr>
+<tr>
+	<td>storeEval</td>
+	<td>${count1}+1</td>
+	<td>count1</td>
+</tr>
+<tr>
+	<td>endWhile</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=shop-cart</td>
+	<td></td>
+</tr>
+<tr>
+	<td>storeText</td>
+	<td>css=span.main-title-text-num</td>
+	<td>count2</td>
+</tr>
+<tr>
+	<td>storeEval</td>
+	<td>parseInt(storedVars['count2'].replace(&quot; товара(ов)&quot;,&quot;&quot;))</td>
+	<td>shoping</td>
+</tr>
+<tr>
+	<td>assertEval</td>
+	<td>${shoping} &gt; 0 ? true : false</td>
+	<td>true</td>
+</tr>
+</tbody></table>
+</body>
+</html>
