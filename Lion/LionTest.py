@@ -26,7 +26,7 @@ class fsm_dataTest(TestCase,fsm_data):
         self.assertEqual(False,fsm.get_state(table,1,"3"),'Now status not correct')
         self.assertEqual(False,fsm.get_action(table,1,"3"),'Action not correct')
 #Тесты на класс Lion
-class LionTestInit(TestCase):
+class LionTest(TestCase):
     def test_lion_init(self):
         leo=lion()
         table={
@@ -45,29 +45,59 @@ class LionTestInit(TestCase):
         self.assertEqual("",leo.get_status(),'State not correct')
         self.assertEqual("",leo.get_last_action(),'Action not correct')
 
-class LionTestStart(TestCase,fsm_data):
     def test_lion_start(self):
         leo=lion()
         leo.start()
         self.assertEqual("fed",leo.get_status(),'State not correct')
         self.assertEqual("",leo.get_last_action(),'Action not correct')
 
-class LionTestFind(TestCase,fsm_data):
-    def test_lion_find(self):
+    def test_lion_find_antelope(self):
         leo=lion()
         fsm=fsm_data()
         leo.start()
+
         self.assertEqual(True,leo.lion_find(fsm.object[0]),'Not true result')
         self.assertEqual("hungry",leo.get_status(),'State not correct')
         self.assertEqual("sleep",leo.get_last_action(),'Action not correct')
+
+        self.assertEqual(True,leo.lion_find(fsm.object[0]),'Not true result')
+        self.assertEqual("fed",leo.get_status(),'State not correct')
+        self.assertEqual("eat",leo.get_last_action(),'Action not correct')
+
+    def test_lion_find_hunter(self):
+        leo=lion()
+        fsm=fsm_data()
+        leo.start()
+
+        self.assertEqual(True,leo.lion_find(fsm.object[1]),'Not true result')
+        self.assertEqual("hungry",leo.get_status(),'State not correct')
+        self.assertEqual("run",leo.get_last_action(),'Action not correct')
+
+        self.assertEqual(True,leo.lion_find(fsm.object[1]),'Not true result')
+        self.assertEqual("hungry",leo.get_status(),'State not correct')
+        self.assertEqual("run",leo.get_last_action(),'Action not correct')
+
+    def test_lion_find_tree(self):
+        leo=lion()
+        fsm=fsm_data()
+        leo.start()
+
+        self.assertEqual(True,leo.lion_find(fsm.object[2]),'Not true result')
+        self.assertEqual("hungry",leo.get_status(),'State not correct')
+        self.assertEqual("see",leo.get_last_action(),'Action not correct')
 
         self.assertEqual(True,leo.lion_find(fsm.object[2]),'Not true result')
         self.assertEqual("hungry",leo.get_status(),'State not correct')
         self.assertEqual("sleep",leo.get_last_action(),'Action not correct')
 
+    def test_lion_find_unknown(self):
+        leo=lion()
+        fsm=fsm_data()
+        leo.start()
+
         self.assertEqual(False,leo.lion_find("car"),'Not true result')
-        self.assertEqual("hungry",leo.get_status(),'State not correct')
-        self.assertEqual("sleep",leo.get_last_action(),'Action not correct')
+        self.assertEqual("fed",leo.get_status(),'State not correct')
+        self.assertEqual("",leo.get_last_action(),'Action not correct')
 
 if __name__ == '__main__':
     unittest.main()
